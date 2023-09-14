@@ -49,4 +49,10 @@ public class PageController {
         return "redirect:/books";
     }
 
+    @GetMapping("/random-book")
+    public String getRandomBook(Model model) {
+        model.addAttribute("randomBook", bookService.getRandomBook());
+        return "randomBook";
+    }
+
 }

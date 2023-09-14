@@ -5,12 +5,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class BookService {
     private final List<Book> books = new ArrayList<>();
+    private final Random randomGenerator;
 
-    public BookService() {
+    public BookService(Random random) {
+        this.randomGenerator = random;
+
         // Példaadatokkal feltötjük - a jövőben ez nem így fog kinézni:)
         books.add(new Book("The Lord of The Rings", "J. R. R. Tolkien"));
         books.add(new Book("The Two Towers", "J. R. R. Tolkien"));
@@ -27,5 +31,9 @@ public class BookService {
 
     public void addBook(Book book) {
         books.add(book);
+    }
+
+    public Book getRandomBook() {
+        return books.get(randomGenerator.nextInt(books.size()));
     }
 }
